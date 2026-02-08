@@ -4,7 +4,7 @@ NSYNC_COMMIT = "82b118aa7ace3132e517e2c467f8732978cf4023"
 
 NSYNC_SHA256 = ""
 
-ENZYMEXLA_COMMIT = "dbd298d3d1acc857a84d5e626c5e3fddf1a09e78"
+ENZYMEXLA_COMMIT = "4297f72256f5d3e9fd0122b880ac5a254e7bfd66"
 
 ENZYMEXLA_SHA256 = ""
 
@@ -140,8 +140,11 @@ xla_workspace(NEW_XLA_PATCHES)
 # pip_install_dependencies()
 
 load("@enzyme_ad//third_party/enzyme:workspace.bzl", enzyme_workspace = "repo")
+load("@enzyme_ad//third_party/cuda_tile:workspace.bzl", cuda_tile_workspace = "repo")
 
 enzyme_workspace()
+
+cuda_tile_workspace("@enzyme_ad")
 
 # http_archive(
 #     name = "upb",
