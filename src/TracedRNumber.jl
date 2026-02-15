@@ -988,4 +988,17 @@ Base.rem2pi(x::TracedRNumber{<:Integer}, r::Base.RoundingMode) = rem2pi(float(x)
     end
 end
 
+Base.unsigned(x::TracedRNumber{T}) where {T<:Reactant.ReactantUInt} = x
+function Base.unsigned(x::TracedRNumber{T}) where {T <: Reactant.ReactantSInt}
+    return convert(TracedRNumber{unsigned(T)}, x)
+end
+
+function Base.signed(x::TracedRNumber{T}) where {T<:Reactant.ReactantUInt}
+    return convert(TracedRNumber{signed(T)}, x)
+end
+Base.signed(x::TracedRNumber{T}) where {T<:Reactant.ReactantSInt} = x
+
+Base.uabs(x::TracedRNumber{<:Integer}) = abs(x)
+Base.uabs(x::TracedRNumber{<:Reactant.ReactantSInt}) = unsigned(abs(x))
+
 end # module TracedRNumberOverrides
